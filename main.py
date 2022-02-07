@@ -17,6 +17,14 @@ def main():
     clusters, labels = make_clusters(scale=2)
     plot_clusters(clusters, labels, filename="figures/loose_clusters.png")
 
+    ## Test:earase
+    mat,labels= make_clusters()
+    km = KMeans(k=3)
+    km.fit(mat = mat)
+    labels_predicted = km.predict(mat)
+    plot_clusters(clusters, labels, filename="figures/normal.png")
+    plot_clusters(clusters, labels, filename="figures/predict.png")
+
     """
     uncomment this section once you are ready to visualize your kmeans + silhouette implementation
     """
