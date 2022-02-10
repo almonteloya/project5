@@ -21,8 +21,6 @@ def test_silhouette():
 	pred = km.predict(clusters)
 	scores = Silhouette().score(clusters, pred)
 	meansocrehigh = (np.mean(scores))
-	print(meansocrehigh)
-	plot_multipanel(clusters, labels, pred, scores,filename="../figures/s_1.png")
 
 
 	clusters, labels = make_clusters(n=500, k=3,scale=5)
@@ -31,9 +29,9 @@ def test_silhouette():
 	pred = km.predict(clusters)
 	scores = Silhouette().score(clusters, pred)
 	meansocrelow = (np.mean(scores))
-	print(meansocrelow)
-	plot_multipanel(clusters, labels, pred, scores,filename="../figures/s_2.png")
 
-	return
+	assert(meansocrehigh>meansocrelow)
+
+	return()
 
 test_silhouette()

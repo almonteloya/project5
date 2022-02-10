@@ -6,6 +6,11 @@ from cluster import (
         plot_clusters,
         plot_multipanel)
 
+#def centeroidnp(arr):
+#    length = arr.shape[0]
+#    sum_x = np.sum(arr[:, 0])
+#    sum_y = np.sum(arr[:, 1])
+#    return sum_x/length, sum_y/length
 
 def main():
 
@@ -16,15 +21,21 @@ def main():
     # create loose clusters
     clusters, labels = make_clusters(scale=2)
     plot_clusters(clusters, labels, filename="figures/loose_clusters.png")
-    km = KMeans(k=3)
+    
 
-    clusters, labels = make_clusters(n=500, k=3,scale=.2)
-    km = KMeans(k=3)
-    km.fit(clusters)
-    pred = km.predict(clusters)
-    scores = Silhouette().score(clusters, pred)
-    print(np.mean(scores))
-    plot_multipanel(clusters, labels, pred, scores,filename="figures/clusters_test.png")
+    
+#    clusters, labels = make_clusters(k=2,scale=3)
+#    km = KMeans(k=2)
+#    km.fit(clusters)
+#    pred = km.predict(clusters)
+#    scores = Silhouette().score(clusters, pred)
+#    centroid = (centeroidnp(clusters[pred==0]))
+#    np
+#    l_pred=pred.tolist()
+#    labels_l=labels.tolist()
+#    plot_multipanel(clusters, labels, pred, scores,filename="figures/clusters_test.png")
+    
+
 
     """
     uncomment this section once you are ready to visualize your kmeans + silhouette implementation
