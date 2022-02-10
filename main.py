@@ -16,24 +16,25 @@ def main():
     # create loose clusters
     clusters, labels = make_clusters(scale=2)
     plot_clusters(clusters, labels, filename="figures/loose_clusters.png")
-
-    ## Test:earase
-    mat,labels= make_clusters()
     km = KMeans(k=3)
-    km.fit(mat = mat)
-    labels_predicted = km.predict(mat)
-    plot_clusters(clusters, labels, filename="figures/normal.png")
-    plot_clusters(clusters, labels, filename="figures/predict.png")
+
+    clusters, labels = make_clusters(n=500, k=3,scale=.2)
+    km = KMeans(k=3)
+    km.fit(clusters)
+    pred = km.predict(clusters)
+    scores = Silhouette().score(clusters, pred)
+    print(np.mean(scores))
+    plot_multipanel(clusters, labels, pred, scores,filename="figures/clusters_test.png")
 
     """
     uncomment this section once you are ready to visualize your kmeans + silhouette implementation
     """
-    # clusters, labels = make_clusters(k=4, scale=1)
-    # km = KMeans(k=4)
-    # km.fit(clusters)
-    # pred = km.predict(clusters)
-    # scores = Silhouette().score(clusters, pred)
-    # plot_multipanel(clusters, labels, pred, scores)
+    clusters, labels = make_clusters(k=4, scale=4)
+    km = KMeans(k=4)
+    km.fit(clusters)
+    pred = km.predict(clusters)
+    scores = Silhouette().score(clusters, pred)
+    plot_multipanel(clusters, labels, pred, scores,filename="figures/clusters_main.png")
     
 
 if __name__ == "__main__":
